@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <FormatInput input-title="Second" />
-    <FormatInput input-title="Minute" />
-    <FormatInput input-title="Hour" />
+    <TimeInput input-title="Second" />
+    <TimeInput input-title="Minute" />
+    <TimeInput input-title="Hour" />
+    <DayOfWeekInput />
   </div>
 </template>
 
 <script>
-import FormatInput from './components/FormatInput.vue'
+import TimeInput from './components/TimeInput.vue'
+import DayOfWeekInput from './components/DayOfWeekInput.vue'
 
 export default {
   name: 'App',
   components: {
-    FormatInput
+    TimeInput,
+    DayOfWeekInput
   }
 }
 </script>

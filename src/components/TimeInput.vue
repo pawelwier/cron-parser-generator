@@ -13,7 +13,7 @@
         Every
       </div>
       <div>
-        <input type="text">
+        <input type="text" v-model="everyUnit">
       </div>
       <div>
         {{ unit }}(s)
@@ -24,7 +24,7 @@
         Specific {{ unit }}(s) (divided by comma ',')
       </div>
       <div>
-        <input type="text">
+        <input type="text" v-model="specificUnit">
       </div>
     </div>
     <div class="input-wrapper" @click="setMethod(3)">
@@ -32,13 +32,13 @@
         Every {{ unit }} between
       </div>
       <div>
-        <input type="text">
+        <input type="text" v-model="betweenUnitOne">
       </div>
       <div>
         and
       </div>
       <div>
-        <input type="text">
+        <input type="text" v-model="betweenUnitTwo">
       </div>
     </div>
     <div class="result">
@@ -62,19 +62,26 @@ export default {
       specificUnit: '',
       betweenUnitOne: '',
       betweenUnitTwo: '',
+      result: ''
     }
   },
   computed:{
     unit() {
       return this.inputTitle.toLowerCase()
     },
-    result() {
-      return 'x'
-    },
   },
   methods: {
     setMethod(param) {
-      console.log(param)
+      switch(param) {
+        case 0: this.result = '*'
+          break
+        case 1: this.result = `*/${this.everyUnit}`
+          break
+        case 2: this.result = `${this.specificUnit}`
+          break
+        case 3: this.result = `${this.betweenUnitOne}-${this.betweenUnitTwo}`
+          break
+      }
     },
   }
 }
