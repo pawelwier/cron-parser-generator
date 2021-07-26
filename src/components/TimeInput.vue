@@ -41,9 +41,6 @@
         <input type="text" v-model="betweenUnitTwo">
       </div>
     </div>
-    <div class="result">
-      Result: {{ result }}
-    </div>
   </div>
 </template>
 
@@ -62,7 +59,6 @@ export default {
       specificUnit: '',
       betweenUnitOne: '',
       betweenUnitTwo: '',
-      result: ''
     }
   },
   computed:{
@@ -73,15 +69,21 @@ export default {
   methods: {
     setMethod(param) {
       switch(param) {
-        case 0: this.result = '*'
+        case 0: this.setResult('*')
           break
-        case 1: this.result = `*/${this.everyUnit}`
+        case 1: this.setResult(`*/${this.everyUnit}`)
           break
-        case 2: this.result = `${this.specificUnit}`
+        case 2: this.setResult(`${this.specificUnit}`)
           break
-        case 3: this.result = `${this.betweenUnitOne}-${this.betweenUnitTwo}`
+        case 3: this.setResult(`${this.betweenUnitOne}-${this.betweenUnitTwo}`)
           break
       }
+    },
+    setResult(val) {
+      this.$emit('time-unit-changed', {
+        name: this.inputTitle,
+        value: val,
+      })
     },
   }
 }
@@ -95,10 +97,6 @@ export default {
 
   .input-wrapper:hover {
     cursor: pointer;
-  }
-
-  .result {
-    padding-top: 10px;
   }
 
   input[type=text] {
